@@ -1,7 +1,7 @@
 {
   "name": "starterpack-lindseykim6",
   "version": "1.0.0",
-  "description": "*description*",
+  "description": "",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
@@ -10,8 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^5.78.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.13.2"
+    "vite": "^4.2.1"
   }
 }
