@@ -1,9 +1,9 @@
-import $ from 'jquery';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import './style.scss';
 
-let num = 0;
-setInterval(() => {
-  // eslint-disable-next-line no-useless-concat
-  $('#main').html('You\'ve been on this page for ' + `${num}` + ' seconds');
-  num += 1;
-}, 1000);
+// eslint-disable-next-line react/function-component-definition
+const App = () => <div className="test">All the REACT are belong to us!</div>;
+
+const root = createRoot(document.getElementById('main'));
+root.render(<App />);
