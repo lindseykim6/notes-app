@@ -28,16 +28,19 @@ const Note = (props) => {
   }
 
   function onEditSelect() {
-    props.onEditSelect(props.note, titleName, textName);
+    // props.onDeleteSelect(props.notes.id);
+    props.onEditSelect(props.id, titleName, textName);
     render2();
   }
 
   function onDeleteSelect() {
-    props.onDeleteSelect(props.note);
+    // props.onDeleteSelect(props.notes.id);
+    props.onDeleteSelect(props.id);
   }
 
   const handleDrag = (e, data) => {
-    props.onDragSelect(props.note, data.x, data.y);
+    // props.onDragSelect(props.notes.id, data.x, data.y);
+    props.onDragSelect(props.id, data.x, data.y);
   };
 
   return (

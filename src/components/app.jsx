@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 /* eslint-disable import/no-extraneous-dependencies */
 // import { produce } from 'immer';
@@ -7,14 +8,16 @@ import AddedNote from './addednote';
 
 function App(props) {
   let newList = {};
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
   const [defNotes, setDefaultNotes] = useState({});
   const [notes, setNotes] = useState({});
 
   useEffect(() => {
-    // eslint-disable-next-line no-shadow
     firebasedb.onNotesValueChange((notes) => {
       setNotes(notes);
+    });
+    firebasedb.onNotesValueChange((defNotes) => {
+      setDefaultNotes(defNotes);
     });
   }, []);
 
@@ -30,6 +33,7 @@ function App(props) {
 
   const handleDeleteSelect = (id) => {
     firebasedb.removeNote(id);
+    firebasedb.removeDefNote(id);
     // setNotes(
     //   produce((draft) => {
     //     delete draft[id];
@@ -38,7 +42,8 @@ function App(props) {
   };
 
   const handleDragSelect = (id, xPos, yPos) => {
-    firebasedb.dragNote(id, { x: xPos, y: yPos });
+    const updatedFields = { x: xPos, y: yPos };
+    firebasedb.dragNote(id, updatedFields);
     // setNotes(
     //   produce((draft) => {
     //     draft[id] = { ...draft[id], ...{ x: xPos, y: yPos } };
@@ -53,7 +58,6 @@ function App(props) {
       }
       return newList;
     });
-    console.log(newList);
     setNotes(newList);
     newList = {};
   };
@@ -63,28 +67,25 @@ function App(props) {
   //     );
   //   };
 
-  const newNote = {
-    id: count,
-    title: '',
-    text: '',
-    x: 0,
-    y: 0,
-  };
-
   const setAllNotes = (newTitle, newText) => {
-    newNote.title = newTitle;
-    newNote.text = newText;
     // const news = { ...notes, [count]: newNote };
     // setNotes(news);
-
+    // setCount(count + 1);
+    const newNote = {
+      // id: count,
+      title: newTitle,
+      text: newText,
+      x: 0,
+      y: 0,
+    };
     firebasedb.addNote(newNote);
-    setCount(count + 1);
-    setDefaultNotes(notes);
+    console.log(notes);
+    firebasedb.addDefNote(newNote);
+    console.log(defNotes);
   };
 
   return (
     <div className="app">
-      {console.log(notes)}
       <Board
         notes={notes}
         onEditSelect={(id, newTitle, newText) => handleEditSelect(id, newTitle, newText)}
@@ -93,7 +94,7 @@ function App(props) {
         // onFormatSelect={(selection) => handleFormatSelect(selection)}
         onDragSelect={(id, x, y) => handleDragSelect(id, x, y)}
       />
-      <AddedNote className="addNote" newNote={newNote} onAddNote={setAllNotes} />
+      <AddedNote className="addNote" onAddNote={setAllNotes} />
     </div>
   );
 }

@@ -23,23 +23,41 @@ firebase.initializeApp(firebaseConfig);
 export function onNotesValueChange(callback) {
   firebase.database().ref('notes').on('value', (snapshot) => {
     const newNoteState = snapshot.val();
-    console.log(callback);
-    callback(newNoteState);
+    if (newNoteState != null) {
+      callback(newNoteState);
+    } else {
+      callback({});
+    }
   });
 }
 
-export function dragNote(id, x, y) {
-  console.log(id);
-  firebase.database().ref('notes').child(id.x).update(x);
-  firebase.database().ref('notes').child(id.y).update(y);
+export function onDefNotesValueChange(callback) {
+  firebase.database().ref('defNotes').on('value', (snapshot) => {
+    const newNoteState = snapshot.val();
+    if (newNoteState != null) {
+      callback(newNoteState);
+    } else {
+      callback({});
+    }
+  });
+}
+
+export function dragNote(id, updatedfield) {
+  firebase.database().ref('notes').child(id).update(updatedfield);
 }
 
 export function addNote(newNote) {
   firebase.database().ref('notes').push(newNote);
 }
+export function addDefNote(newNote) {
+  firebase.database().ref('defNotes').push(newNote);
+}
 
 export function removeNote(id) {
   firebase.database().ref('notes').child(id).remove();
+}
+export function removeDefNote(id) {
+  firebase.database().ref('defNotes').child(id).remove();
 }
 
 export function updateNote(id, updatedfield) {
