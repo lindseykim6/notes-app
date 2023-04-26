@@ -50,7 +50,7 @@ const Note = (props) => {
       grid={[25, 25]} // snapping to grid pixels
       defaultPosition={{ x: 40, y: 40 }}
       position={{
-        x: props.note.x, y: props.note.y, width: 200, height: 200,
+        x: props.note.x, y: props.note.y, width: 200, height: 200, zIndex: props.note.zindex,
       }}
       onDrag={handleDrag}
 

@@ -46,6 +46,10 @@ export function dragNote(id, updatedfield) {
   firebase.database().ref('notes').child(id).update(updatedfield);
 }
 
+export function search(updatedfield) {
+  firebase.database().ref('notes').set(updatedfield);
+}
+
 export function addNote(newNote) {
   firebase.database().ref('notes').push(newNote);
 }
@@ -62,4 +66,8 @@ export function removeDefNote(id) {
 
 export function updateNote(id, updatedfield) {
   firebase.database().ref('notes').child(id).update(updatedfield);
+}
+
+export function updateDefNote(id, updatedfield) {
+  firebase.database().ref('defNotes').child(id).update(updatedfield);
 }

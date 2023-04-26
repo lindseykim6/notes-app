@@ -8,7 +8,7 @@ import AddedNote from './addednote';
 
 function App(props) {
   let newList = {};
-  // const [count, setCount] = useState(1);
+  const [count, setCount] = useState(1);
   const [defNotes, setDefaultNotes] = useState({});
   const [notes, setNotes] = useState({});
 
@@ -16,7 +16,7 @@ function App(props) {
     firebasedb.onNotesValueChange((notes) => {
       setNotes(notes);
     });
-    firebasedb.onNotesValueChange((defNotes) => {
+    firebasedb.onDefNotesValueChange((defNotes) => {
       setDefaultNotes(defNotes);
     });
   }, []);
@@ -24,6 +24,7 @@ function App(props) {
   const handleEditSelect = (id, newTitle, newText) => {
     const updatedFields = { title: newTitle, text: newText };
     firebasedb.updateNote(id, updatedFields);
+    firebasedb.updateDefNote(id, updatedFields);
     // setNotes(
     //   produce((draft) => {
     //     draft[id] = { ...draft[id], ...updatedFields };
@@ -58,7 +59,7 @@ function App(props) {
       }
       return newList;
     });
-    setNotes(newList);
+    firebasedb.search(newList);
     newList = {};
   };
 
@@ -70,18 +71,17 @@ function App(props) {
   const setAllNotes = (newTitle, newText) => {
     // const news = { ...notes, [count]: newNote };
     // setNotes(news);
-    // setCount(count + 1);
+    setCount(count + 1);
     const newNote = {
       // id: count,
       title: newTitle,
       text: newText,
       x: 0,
       y: 0,
+      zindex: count * 10,
     };
     firebasedb.addNote(newNote);
-    console.log(notes);
     firebasedb.addDefNote(newNote);
-    console.log(defNotes);
   };
 
   return (
