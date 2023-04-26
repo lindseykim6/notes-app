@@ -1,17 +1,121 @@
-body, html {
-    font-family: "Roboto", sans-serif;
-    background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%);
-    height: 100%;
-    font-size: 20px;
+body{
+    background-color: lightblue;
+    margin: 0%;
+    padding: 0%;
+}
+.note{
+    list-style-type: none;
+    padding: 4%;
+    width: 30%;
+    height: 30vh;
 }
 
-.logo {
-    background-image: url('img/drink.jpg');
-    width: 100px;
-    height: 100px;
-    background-repeat: no-repeat;
-    background-size: contain;
+.noteDetail{
+    background-color: beige;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 3%;
+    border-style:ridge;
+    text-align: center;
+    height: 100%;
 }
-:root {
-    text-size-adjust: 100%;
-  }
+
+.handle{
+    position: absolute;
+    left: 5%;
+    top: 5%;
+}
+
+.delete {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
+
+.title{
+    height: 5%;
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+
+}
+
+.ourTitle {
+    font-weight: bold;
+}
+
+.text{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+}
+
+.app {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+}
+
+.board {
+    background-color: lightblue;
+    background-repeat: repeat-y;
+    width: 60%;
+    height: 100vh;
+}
+
+.addNote {
+    background-color: blanchedalmond;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 40%;
+    height: 50vh;
+}
+
+.notelist{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 7%;
+}
+
+.edit{
+    margin: 10% 0% 10% 0%;
+}
+
+.textbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 100%;
+    overflow-wrap: break-word;
+    margin: 0% 0% 10% 0%;
+}
+
+.ourTitle {
+    margin: 10% 0% 10% 0%;
+}
+
+.Search {
+    padding:5%;
+}
+
+.header2 {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+}
+
+.header {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.button {
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 10%;
+}
