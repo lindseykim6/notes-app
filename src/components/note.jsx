@@ -1,6 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useEffect } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Draggable from 'react-draggable';
+import ReactMarkdown from 'react-markdown';
 
 // eslint-disable-next-line react/function-component-definition
 const Note = (props) => {
@@ -61,13 +62,12 @@ const Note = (props) => {
           { /* Sets the component based on isEditing */ }
           {isEditing && (<span>Title</span>)}
           {isEditing && (<input value={titleName} onChange={onTitleChange} />) }
-          {!isEditing && (<p className="ourTitle"> {props.note.title} </p>
-          ) }
+          {!isEditing && (<div className="ourTitle"> <ReactMarkdown>{props.note.title}</ReactMarkdown></div>)}
         </div>
         <div className="text">
           {isEditing && (<span>Text</span>)}
           {isEditing && (<input value={textName} onChange={onTextChange} />) }
-          {!isEditing && (<div className="textbox"> {props.note.text} </div>) }
+          {!isEditing && (<div className="textbox"><ReactMarkdown>{props.note.text}</ReactMarkdown></div>) }
         </div>
         <div>
           {!isEditing && <button type="button" className="button" onClick={render}> Edit </button>}
